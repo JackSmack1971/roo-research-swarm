@@ -1,36 +1,374 @@
 {
-  "$id": "claims.schema.json",
+  "$id": "sparc_claims.schema.json",
   "type": "object",
   "required": [
-    "claims"
+    "research_domain",
+    "autonomous_development_context",
+    "claims",
+    "methodology",
+    "confidence_summary",
+    "implementation_guidance"
   ],
   "properties": {
+    "research_domain": {
+      "type": "string",
+      "enum": [
+        "domain_intelligence",
+        "technology_architecture", 
+        "security_architecture",
+        "requirements_architecture",
+        "operations_architecture"
+      ]
+    },
+    "autonomous_development_context": {
+      "type": "object",
+      "required": [
+        "sparc_project_target",
+        "autonomous_confidence_required",
+        "memory_bank_integration"
+      ],
+      "properties": {
+        "sparc_project_target": {
+          "type": "boolean"
+        },
+        "autonomous_confidence_required": {
+          "type": "number",
+          "minimum": 0.95,
+          "maximum": 1.0
+        },
+        "memory_bank_integration": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "productContext",
+              "systemPatterns",
+              "decisionLog", 
+              "businessIntelligence",
+              "technicalArchitecture",
+              "securityFramework",
+              "operationalProcedures",
+              "qualityAssurance"
+            ]
+          }
+        },
+        "sparc_phase_support": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "specification",
+              "pseudocode",
+              "architecture", 
+              "refinement",
+              "completion"
+            ]
+          }
+        }
+      }
+    },
     "claims": {
       "type": "array",
       "items": {
         "type": "object",
         "required": [
           "id",
-          "text"
+          "category",
+          "claim",
+          "implementation_guidance",
+          "confidence",
+          "autonomous_development_relevance",
+          "sources",
+          "sparc_integration"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "text": {
+          "category": {
             "type": "string"
           },
-          "topic": {
+          "claim": {
             "type": "string"
           },
-          "priority": {
-            "type": "string",
-            "enum": [
-              "low",
-              "medium",
-              "high"
-            ]
+          "implementation_guidance": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "autonomous_development_relevance": {
+            "type": "object",
+            "required": [
+              "eliminates_questions",
+              "provides_implementation_guidance", 
+              "supports_autonomous_decisions"
+            ],
+            "properties": {
+              "eliminates_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "provides_implementation_guidance": {
+                "type": "boolean"
+              },
+              "supports_autonomous_decisions": {
+                "type": "boolean"
+              },
+              "anticipated_development_scenarios": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "url",
+                "authority_score",
+                "implementation_relevance"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "authority_score": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "implementation_relevance": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "recency": {
+                  "type": "string"
+                },
+                "evidence_hash": {
+                  "type": "string"
+                },
+                "source_type": {
+                  "type": "string",
+                  "enum": [
+                    "official_documentation",
+                    "peer_reviewed_paper",
+                    "industry_standard",
+                    "best_practice_guide",
+                    "technical_blog",
+                    "community_resource",
+                    "benchmark_study",
+                    "case_study"
+                  ]
+                }
+              }
+            }
+          },
+          "sparc_integration": {
+            "type": "object",
+            "required": [
+              "memory_bank_targets",
+              "documentation_targets",
+              "implementation_priority"
+            ],
+            "properties": {
+              "memory_bank_targets": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "productContext",
+                    "systemPatterns",
+                    "decisionLog",
+                    "businessIntelligence", 
+                    "technicalArchitecture",
+                    "securityFramework",
+                    "operationalProcedures",
+                    "qualityAssurance"
+                  ]
+                }
+              },
+              "documentation_targets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sparc_phase_relevance": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "specification",
+                    "pseudocode",
+                    "architecture",
+                    "refinement", 
+                    "completion"
+                  ]
+                }
+              },
+              "implementation_priority": {
+                "type": "string",
+                "enum": [
+                  "critical",
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "autonomous_development_impact": {
+                "type": "string",
+                "enum": [
+                  "eliminates_blocker",
+                  "provides_guidance",
+                  "enhances_quality",
+                  "supports_decision"
+                ]
+              }
+            }
+          },
+          "validation_requirements": {
+            "type": "object",
+            "properties": {
+              "cross_validation_needed": {
+                "type": "boolean"
+              },
+              "implementation_testing_required": {
+                "type": "boolean"
+              },
+              "expert_review_needed": {
+                "type": "boolean"
+              },
+              "confidence_boost_potential": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
           }
+        }
+      }
+    },
+    "methodology": {
+      "type": "object",
+      "required": [
+        "research_approach",
+        "source_prioritization",
+        "confidence_calibration"
+      ],
+      "properties": {
+        "research_approach": {
+          "type": "string"
+        },
+        "source_prioritization": {
+          "type": "string"
+        },
+        "confidence_calibration": {
+          "type": "string"
+        },
+        "autonomous_development_focus": {
+          "type": "string"
+        },
+        "implementation_guidance_methodology": {
+          "type": "string"
+        }
+      }
+    },
+    "confidence_summary": {
+      "type": "object",
+      "required": [
+        "overall_confidence",
+        "autonomous_development_confidence",
+        "high_confidence_claims",
+        "critical_decision_confidence"
+      ],
+      "properties": {
+        "overall_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "autonomous_development_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "high_confidence_claims": {
+          "type": "number"
+        },
+        "critical_decision_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "low_confidence_claims": {
+          "type": "number"
+        },
+        "research_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence_improvement_strategies": {
+          "type": "array", 
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "implementation_guidance": {
+      "type": "object",
+      "required": [
+        "immediate_actionability",
+        "decision_support_completeness", 
+        "autonomous_development_enablement"
+      ],
+      "properties": {
+        "immediate_actionability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "decision_support_completeness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "autonomous_development_enablement": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "questions_eliminated": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "implementation_patterns_provided": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decision_trees_available": {
+          "type": "boolean"
+        },
+        "troubleshooting_guidance": {
+          "type": "boolean"
         }
       }
     }
