@@ -111,8 +111,36 @@ The recommended sequence for each section:
 /templates/                    # Artifact templates
 /scripts/                      # Helper scripts
 ```
-
 ---
+
+## MCP Integration Map
+
+This swarm relies on **Model Context Protocol (MCP)** servers for search, evidence capture, and file orchestration.
+
+| Agent Mode | MCP Server(s) | Purpose in Flow |
+|------------|---------------|-----------------|
+| sequential-orchestrator | desktop-commander, sequential-thinking | Local file/folder orchestration, sequence control |
+| data-researcher | perplexity-ask, exa, playwright, Context7 | Source mining, claim extraction, page snapshots |
+| content-strategist | Context7 | Internal KB search for tone/messaging guidance |
+| agile-technical-writer | desktop-commander | Draft creation & local saves |
+| rapid-fact-checker | perplexity-ask, exa, playwright, Context7 | Claim verification, multi-source cross-check, evidence capture |
+| adversarial-testing-agent | perplexity-ask, exa, playwright, Context7 | Contradiction hunting, vulnerability identification |
+| agent-conclave | desktop-commander | Decision logging, plan updates |
+| probabilistic-planner | desktop-commander | Planning file maintenance |
+
+### API Keys & Config
+
+| MCP Server | Config Needed |
+|------------|--------------|
+| Perplexity Ask | `PERPLEXITY_API_KEY` in MCP server env |
+| Exa MCP | `EXA_API_KEY` in MCP server env |
+| Playwright MCP | `PLAYWRIGHT_BROWSERS_PATH` set to local browser storage |
+| Context7 MCP | Path to local KB or docs folder |
+| Desktop Commander | None |
+| Sequential Thinking | None |
+
+See `/docs/Flow.md` for how each agent interacts with these MCP integrations.
+
 
 ## Quality Gate & FoS Rules
 
