@@ -1,0 +1,8 @@
+{
+  "paths": [],
+  "policy": {
+    "fast_track_if_composite_gte": 0.7,
+    "abandon_if_composite_lt": 0.35
+  },
+  "rationale_log": []
+}

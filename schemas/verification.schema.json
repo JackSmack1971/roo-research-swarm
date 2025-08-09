@@ -1,0 +1,83 @@
+{
+  "$id": "verification.schema.json",
+  "type": "object",
+  "required": [
+    "claims",
+    "summary_confidence",
+    "cross_source_agreement",
+    "authoritativeness_index",
+    "contradiction_score"
+  ],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "confidence",
+          "citations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "refuted",
+              "uncertain"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "url"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "accessed": {
+                  "type": "string"
+                },
+                "evidence_hash": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "cross_source_agreement": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "authoritativeness_index": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "contradiction_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

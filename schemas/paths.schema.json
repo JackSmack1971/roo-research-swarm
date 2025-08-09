@@ -1,0 +1,85 @@
+{
+  "$id": "paths.schema.json",
+  "type": "object",
+  "required": [
+    "paths",
+    "policy"
+  ],
+  "properties": {
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "desc",
+          "scores"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "scores": {
+            "type": "object",
+            "required": [
+              "success",
+              "impact",
+              "efficiency",
+              "composite"
+            ],
+            "properties": {
+              "success": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "impact": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "efficiency": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "composite": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "fast_track_if_composite_gte",
+        "abandon_if_composite_lt"
+      ],
+      "properties": {
+        "fast_track_if_composite_gte": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "abandon_if_composite_lt": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "rationale_log": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

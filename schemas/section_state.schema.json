@@ -1,0 +1,115 @@
+{
+  "$id": "section_state.schema.json",
+  "type": "object",
+  "required": [
+    "project_id",
+    "section_id",
+    "version",
+    "status",
+    "actors",
+    "artifacts",
+    "metrics",
+    "flags",
+    "next_mode"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "DRAFTED",
+        "VERIFIED",
+        "ADVERSARIAL",
+        "EDITED",
+        "READY",
+        "BLOCKED"
+      ]
+    },
+    "actors": {
+      "type": "object",
+      "properties": {
+        "writer": {
+          "type": "string"
+        },
+        "fact_checker": {
+          "type": "string"
+        },
+        "red_team": {
+          "type": "string"
+        },
+        "editor": {
+          "type": "string"
+        },
+        "planner": {
+          "type": "string"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "draft_md": {
+          "type": "string"
+        },
+        "claims_json": {
+          "type": "string"
+        },
+        "verification_json": {
+          "type": "string"
+        },
+        "adversarial_json": {
+          "type": "string"
+        },
+        "edit_md": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "verification_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "contradiction_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "flags": {
+      "type": "object",
+      "properties": {
+        "fos": {
+          "type": "boolean"
+        },
+        "rework": {
+          "type": "boolean"
+        }
+      }
+    },
+    "next_mode": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

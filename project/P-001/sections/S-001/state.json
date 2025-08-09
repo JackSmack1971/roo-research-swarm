@@ -1,0 +1,34 @@
+{
+  "project_id": "P-001",
+  "section_id": "S-001",
+  "version": "v1.0.0",
+  "status": "CREATED",
+  "actors": {
+    "orchestrator": "sequential-orchestrator",
+    "researcher": "data-researcher",
+    "strategist": "content-strategist",
+    "writer": "agile-technical-writer",
+    "fact_checker": "rapid-fact-checker",
+    "red_team": "adversarial-testing-agent",
+    "conclave": "agent-conclave",
+    "planner": "probabilistic-planner"
+  },
+  "artifacts": {
+    "draft_md": "",
+    "claims_json": "",
+    "verification_json": "",
+    "adversarial_json": "",
+    "edit_md": "",
+    "strategy_brief": ""
+  },
+  "metrics": {
+    "verification_confidence": 0.0,
+    "coverage": 0.0,
+    "contradiction_score": 0.0
+  },
+  "flags": {
+    "fos": false,
+    "rework": false
+  },
+  "next_mode": "data-researcher"
+}

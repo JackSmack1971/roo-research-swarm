@@ -1,0 +1,29 @@
+{
+  "paths": [
+    {
+      "id": "A",
+      "desc": "baseline",
+      "scores": {
+        "success": 0.6,
+        "impact": 0.6,
+        "efficiency": 0.6,
+        "composite": 0.6
+      }
+    },
+    {
+      "id": "B",
+      "desc": "aggressive-sourcing",
+      "scores": {
+        "success": 0.55,
+        "impact": 0.7,
+        "efficiency": 0.5,
+        "composite": 0.58
+      }
+    }
+  ],
+  "policy": {
+    "fast_track_if_composite_gte": 0.7,
+    "abandon_if_composite_lt": 0.35
+  },
+  "rationale_log": []
+}

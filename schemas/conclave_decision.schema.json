@@ -1,0 +1,29 @@
+{
+  "$id": "conclave_decision.schema.json",
+  "type": "object",
+  "required": [
+    "options",
+    "decision",
+    "rationale"
+  ],
+  "properties": {
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decision": {
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "required_adaptations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

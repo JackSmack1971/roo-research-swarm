@@ -1,0 +1,18 @@
+{
+  "project_id": "P-XXX",
+  "section_id": "S-XXX",
+  "version": "v1.0.0",
+  "status": "CREATED",
+  "actors": {},
+  "artifacts": {},
+  "metrics": {
+    "verification_confidence": 0.0,
+    "coverage": 0.0,
+    "contradiction_score": 0.0
+  },
+  "flags": {
+    "fos": false,
+    "rework": false
+  },
+  "next_mode": "data-researcher"
+}
