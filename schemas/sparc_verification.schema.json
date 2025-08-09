@@ -1,0 +1,459 @@
+{
+  "$id": "sparc_verification.schema.json",
+  "type": "object",
+  "required": [
+    "claims",
+    "summary_confidence",
+    "autonomous_development_confidence",
+    "cross_source_agreement",
+    "authoritativeness_index",
+    "contradiction_score",
+    "implementation_guidance_quality",
+    "sparc_compliance_assessment"
+  ],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "confidence",
+          "autonomous_development_impact",
+          "implementation_guidance_quality",
+          "citations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "refuted",
+              "uncertain",
+              "requires_validation",
+              "autonomous_ready",
+              "needs_enhancement"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "autonomous_development_impact": {
+            "type": "object",
+            "required": [
+              "eliminates_questions",
+              "enables_autonomous_decisions",
+              "provides_implementation_path"
+            ],
+            "properties": {
+              "eliminates_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "enables_autonomous_decisions": {
+                "type": "boolean"
+              },
+              "provides_implementation_path": {
+                "type": "boolean"
+              },
+              "autonomous_confidence_contribution": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "sparc_phase_enablement": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "specification",
+                    "pseudocode",
+                    "architecture",
+                    "refinement",
+                    "completion"
+                  ]
+                }
+              }
+            }
+          },
+          "implementation_guidance_quality": {
+            "type": "object",
+            "required": [
+              "actionability_score",
+              "completeness_score",
+              "clarity_score"
+            ],
+            "properties": {
+              "actionability_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "completeness_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "clarity_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "implementation_examples_provided": {
+                "type": "boolean"
+              },
+              "troubleshooting_guidance_available": {
+                "type": "boolean"
+              },
+              "configuration_templates_included": {
+                "type": "boolean"
+              }
+            }
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "url",
+                "authority_assessment",
+                "implementation_relevance"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "authority_assessment": {
+                  "type": "object",
+                  "properties": {
+                    "source_authority_score": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "implementation_authority": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "recency_score": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  }
+                },
+                "implementation_relevance": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "accessed": {
+                  "type": "string"
+                },
+                "evidence_hash": {
+                  "type": "string"
+                },
+                "cross_validation_sources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "validation_methodology": {
+            "type": "object",
+            "properties": {
+              "cross_source_validation": {
+                "type": "boolean"
+              },
+              "implementation_testing": {
+                "type": "boolean"
+              },
+              "expert_review": {
+                "type": "boolean"
+              },
+              "autonomous_development_scenario_testing": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "autonomous_development_confidence": {
+      "type": "object",
+      "required": [
+        "overall_autonomous_readiness",
+        "critical_decision_confidence",
+        "implementation_guidance_confidence",
+        "question_elimination_confidence"
+      ],
+      "properties": {
+        "overall_autonomous_readiness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "critical_decision_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "implementation_guidance_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "question_elimination_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "autonomous_development_blockers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "blocker_description": {
+                "type": "string"
+              },
+              "impact_severity": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "mitigation_approach": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "cross_source_agreement": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "authoritativeness_index": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "contradiction_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "implementation_guidance_quality": {
+      "type": "object",
+      "required": [
+        "overall_implementation_readiness",
+        "guidance_completeness",
+        "autonomous_enablement_score"
+      ],
+      "properties": {
+        "overall_implementation_readiness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "guidance_completeness": {
+          "type": "object",
+          "properties": {
+            "architecture_guidance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "implementation_patterns": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "configuration_guidance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "troubleshooting_guidance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "autonomous_enablement_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "questions_answered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remaining_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sparc_compliance_assessment": {
+      "type": "object",
+      "required": [
+        "modularity_support",
+        "security_by_design_support",
+        "test_driven_development_support",
+        "documentation_standards_compliance"
+      ],
+      "properties": {
+        "modularity_support": {
+          "type": "object",
+          "properties": {
+            "500_line_limit_compliance": {
+              "type": "boolean"
+            },
+            "modular_architecture_guidance": {
+              "type": "boolean"
+            },
+            "component_boundary_definition": {
+              "type": "boolean"
+            }
+          }
+        },
+        "security_by_design_support": {
+          "type": "object",
+          "properties": {
+            "threat_modeling_included": {
+              "type": "boolean"
+            },
+            "security_control_guidance": {
+              "type": "boolean"
+            },
+            "compliance_framework_support": {
+              "type": "boolean"
+            }
+          }
+        },
+        "test_driven_development_support": {
+          "type": "object",
+          "properties": {
+            "testing_strategy_defined": {
+              "type": "boolean"
+            },
+            "test_automation_guidance": {
+              "type": "boolean"
+            },
+            "quality_assurance_procedures": {
+              "type": "boolean"
+            }
+          }
+        },
+        "documentation_standards_compliance": {
+          "type": "object",
+          "properties": {
+            "comprehensive_documentation": {
+              "type": "boolean"
+            },
+            "implementation_procedures": {
+              "type": "boolean"
+            },
+            "troubleshooting_procedures": {
+              "type": "boolean"
+            }
+          }
+        },
+        "overall_sparc_compliance_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "quality_gates": {
+      "type": "object",
+      "required": [
+        "autonomous_development_gate",
+        "sparc_compliance_gate",
+        "implementation_readiness_gate"
+      ],
+      "properties": {
+        "autonomous_development_gate": {
+          "type": "object",
+          "properties": {
+            "threshold_met": {
+              "type": "boolean"
+            },
+            "required_confidence": {
+              "type": "number",
+              "minimum": 0.95,
+              "maximum": 1.0
+            },
+            "actual_confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "gate_status": {
+              "type": "string",
+              "enum": ["passed", "failed", "conditional"]
+            }
+          }
+        },
+        "sparc_compliance_gate": {
+          "type": "object",
+          "properties": {
+            "threshold_met": {
+              "type": "boolean"
+            },
+            "compliance_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "gate_status": {
+              "type": "string",
+              "enum": ["passed", "failed", "conditional"]
+            }
+          }
+        },
+        "implementation_readiness_gate": {
+          "type": "object",
+          "properties": {
+            "threshold_met": {
+              "type": "boolean"
+            },
+            "readiness_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "gate_status": {
+              "type": "string",
+              "enum": ["passed", "failed", "conditional"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
