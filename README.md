@@ -1,95 +1,157 @@
 # Roo Research Swarm
 
-A ready-to-clone repository that turns **Roo Code** into a structured, multi-agent **research workflow**.  
-This repo gives you: project scaffolding, JSON schemas, VS Code config, scripts, and templates—so you can open the folder in VS Code and start researching immediately.
+A ready-to-run repository that transforms **Roo Code** into a structured, multi-agent **research workflow**.
 
-> You already have your `.roomodes` file; this repo **does not** include it. Follow the setup steps below to point your modes at the canonical file paths.
+This project includes:
+
+- **Fully patched `.roomodes`** file with Handoff Primers for all research modes  
+- **Complete project structure** with canonical directories and JSON schemas  
+- **VS Code configuration** for schema validation and productivity tooling  
+- **Cross-platform scripts** to create new sections and validate artifacts  
+- **Templates** for every artifact type (handoff, state, claims, verification, adversarial, conclave, paths)
+
+Once cloned, you can open this project in **VS Code**, run Roo Code in the same folder, and immediately start coordinated research using the defined agent flow.
 
 ---
 
 ## Quick Start
 
-1. **Clone**
-   ```bash
-   git clone https://github.com/YOUR_ORG/roo-research-swarm.git
-   cd roo-research-swarm
-   ```
+### 1. Clone the Repository
 
-2. **Open in VS Code**
-   - Recommended extensions auto-install (see `.vscode/extensions.json`).
+```bash
+git clone git@github.com:JackSmack1971/roo-research-swarm.git
+cd roo-research-swarm
+````
 
-3. **Place your `.roomodes`**
-   - Put your **patched** `.roomodes` in the workspace root (or wherever Roo expects it).
-   - Ensure each mode's `customInstructions` uses the **Handoff Primer** you added.
-
-4. **Initialize a project**
-   ```bash
-   # Bash
-   scripts/new-section.sh P-001 S-001 "Initial drafting"
-   scripts/new-section.sh P-001 S-002 "Second section"
-
-   # PowerShell (Windows)
-   scripts/new-section.ps1 -ProjectId P-001 -SectionId S-001 -Reason "Initial drafting"
-   scripts/new-section.ps1 -ProjectId P-001 -SectionId S-002 -Reason "Second section"
-   ```
-
-5. **Run the flow (manual or scripted)**
-   - Start with **data-researcher → content-strategist → agile-technical-writer → rapid-fact-checker → adversarial-testing-agent → agent-conclave (if FoS) → agile-editor → probabilistic-planner**.
-   - Each mode reads/writes the canonical files under `/project/{project_id}/sections/{section_id}/`.
+> 💡 **HTTPS Alternative:**
+>
+> ```bash
+> git clone https://github.com/JackSmack1971/roo-research-swarm.git
+> ```
 
 ---
 
-## Canonical Paths
+### 2. Open in VS Code
+
+* The `.vscode` folder contains recommended extensions and schema validation settings.
+* JSON editing for artifacts (state, handoff, claims, etc.) is **schema-validated in real time**.
+
+---
+
+### 3. Verify `.roomodes` is Present
+
+Your `.roomodes` file is already included and pre-patched with all research mode Handoff Primers:
 
 ```
-/schemas/                      # JSON Schemas (contracts)
+sequential-orchestrator
+data-researcher
+content-strategist
+agile-technical-writer
+rapid-fact-checker
+adversarial-testing-agent
+agent-conclave
+probabilistic-planner
+```
+
+---
+
+### 4. Initialize Project Sections
+
+Use the provided scripts to add sections to your research project.
+
+**Bash (Linux/Mac/WSL):**
+
+```bash
+scripts/new-section.sh P-001 S-003 "New research topic"
+```
+
+**PowerShell (Windows):**
+
+```powershell
+scripts/new-section.ps1 -ProjectId P-001 -SectionId S-003 -Reason "New research topic"
+```
+
+---
+
+### 5. Run the Research Flow
+
+The recommended sequence for each section:
+
+1. **sequential-orchestrator** → Sets up initial state & handoff
+2. **data-researcher** → Mines sources, produces `claims.vN.json`
+3. **content-strategist** → Writes strategy brief in `/strategy/{section}.brief.vN.json`
+4. **agile-technical-writer** → Drafts `draft.vN.md` (updates claims if needed)
+5. **rapid-fact-checker** → Produces `verification.vN.json`, applies Quality Gate & FoS rules
+6. **adversarial-testing-agent** → Produces `adversarial.vN.json`
+7. **agent-conclave** *(if FoS triggered)* → Makes pivot/continue decisions
+8. **agile-editor** *(if included)* → Finalizes `edit.vN.md`
+9. **probabilistic-planner** → Updates `/control/planning/paths.json`
+
+---
+
+## Canonical File Paths
+
+```
+/schemas/                      # JSON Schemas for all artifacts
 /project/{pid}/
   control/
     planning/paths.json
     conclave/
     postmortem/
-  evidence/                    # saved HTML/PDF snapshots (hash-named)
-  strategy/                    # strategist briefs per section
+  evidence/                    # Saved HTML/PDF snapshots (hash-named)
+  strategy/                    # Strategist briefs per section
   sections/{sid}/
-    state.json                 # section state incl. status/metrics/flags/next_mode
-    handoff.json               # current_mode → next_mode + required_inputs
+    state.json
+    handoff.json
     draft.v{N}.md
     claims.v{N}.json
     verification.v{N}.json
     adversarial.v{N}.json
     edit.v{N}.md
+/templates/                    # Artifact templates
+/scripts/                      # Helper scripts
 ```
 
 ---
 
-## Quality Gate & FoS (you can tune)
+## Quality Gate & FoS Rules
 
-- **Quality Gate (Fact Checker)**
-  - Gate passes at `summary_confidence ≥ 0.90`
-  - Otherwise set `flags.rework = true` and route back to `agile-technical-writer`
+**Quality Gate (Fact Checker)**
 
-- **FoS (Finding of Significance)**
-  - Set `flags.fos = true` if `contradiction_score ≥ 0.60` **or** two independent FoS flags within 24h
-  - If `fos = true`, `next_mode = agent-conclave` (exclusive path)
+* Pass: `summary_confidence ≥ 0.90` → next\_mode continues
+* Fail: set `flags.rework = true` → send back to `agile-technical-writer`
+
+**Finding of Significance (FoS)**
+
+* Set `flags.fos = true` if:
+
+  * `contradiction_score ≥ 0.60` OR
+  * Two independent FoS flags in 24 hours
+* If FoS triggered → next\_mode = `agent-conclave` (exclusive path)
 
 ---
 
-## Scripts
+## Utilities
 
-- `scripts/new-section.sh` / `scripts/new-section.ps1`: create a new section with initialized `state.json` and `handoff.json`
-- `scripts/verify-schemas.py`: validate repo JSONs against `/schemas`
-- `scripts/print-tree.py`: quick directory tree view
+* **Validate JSON Artifacts:**
+
+```bash
+pip install jsonschema
+scripts/verify-schemas.py
+```
+
+* **Print Directory Tree:**
+
+```bash
+scripts/print-tree.py
+```
 
 ---
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
-
-## Security Policy
-
-See [SECURITY.md](SECURITY.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and [CODE\_OF\_CONDUCT.md](CODE_OF_CONDUCT.md) for behavior standards.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE)
