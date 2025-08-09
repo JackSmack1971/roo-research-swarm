@@ -1,3 +1,104 @@
 {
-  "claims": []
+  "research_domain": "__RESEARCH_DOMAIN__",
+  "autonomous_development_context": {
+    "sparc_project_target": true,
+    "autonomous_confidence_required": 0.95,
+    "memory_bank_integration": [
+      "productContext",
+      "systemPatterns",
+      "decisionLog"
+    ],
+    "sparc_phase_support": [
+      "specification",
+      "architecture",
+      "refinement",
+      "completion"
+    ]
+  },
+  "claims": [
+    {
+      "id": "__RESEARCH_DOMAIN__-001",
+      "category": "__CLAIM_CATEGORY__",
+      "claim": "__CLAIM_STATEMENT__",
+      "implementation_guidance": "__IMPLEMENTATION_GUIDANCE__",
+      "rationale": "__RATIONALE__",
+      "confidence": 0.95,
+      "autonomous_development_relevance": {
+        "eliminates_questions": [
+          "__QUESTION_1__",
+          "__QUESTION_2__"
+        ],
+        "provides_implementation_guidance": true,
+        "supports_autonomous_decisions": true,
+        "anticipated_development_scenarios": [
+          "__SCENARIO_1__",
+          "__SCENARIO_2__"
+        ]
+      },
+      "sources": [
+        {
+          "url": "__SOURCE_URL__",
+          "authority_score": 0.9,
+          "implementation_relevance": 0.9,
+          "recency": "__RECENCY__",
+          "evidence_hash": "__EVIDENCE_HASH__",
+          "source_type": "official_documentation"
+        }
+      ],
+      "sparc_integration": {
+        "memory_bank_targets": [
+          "__TARGET_MEMORY_BANK_FILE__"
+        ],
+        "documentation_targets": [
+          "__TARGET_DOCUMENTATION__"
+        ],
+        "sparc_phase_relevance": [
+          "architecture"
+        ],
+        "implementation_priority": "critical",
+        "autonomous_development_impact": "eliminates_blocker"
+      },
+      "validation_requirements": {
+        "cross_validation_needed": true,
+        "implementation_testing_required": true,
+        "expert_review_needed": false,
+        "confidence_boost_potential": 0.05
+      }
+    }
+  ],
+  "methodology": {
+    "research_approach": "__RESEARCH_APPROACH__",
+    "source_prioritization": "Official documentation, peer-reviewed papers, industry standards, best practice guides",
+    "confidence_calibration": "Conservative calibration with multi-source validation for autonomous development",
+    "autonomous_development_focus": "Implementation guidance and question elimination prioritized",
+    "implementation_guidance_methodology": "Comprehensive pattern analysis with working examples"
+  },
+  "confidence_summary": {
+    "overall_confidence": 0.95,
+    "autonomous_development_confidence": 0.95,
+    "high_confidence_claims": 0,
+    "critical_decision_confidence": 0.95,
+    "low_confidence_claims": 0,
+    "research_limitations": [],
+    "confidence_improvement_strategies": [
+      "Additional cross-source validation",
+      "Implementation testing and validation",
+      "Expert review for critical decisions"
+    ]
+  },
+  "implementation_guidance": {
+    "immediate_actionability": 0.95,
+    "decision_support_completeness": 0.95,
+    "autonomous_development_enablement": 0.95,
+    "questions_eliminated": [
+      "__ELIMINATED_QUESTION_1__",
+      "__ELIMINATED_QUESTION_2__"
+    ],
+    "implementation_patterns_provided": [
+      "__PATTERN_1__",
+      "__PATTERN_2__"
+    ],
+    "decision_trees_available": true,
+    "troubleshooting_guidance": true
+  }
 }
