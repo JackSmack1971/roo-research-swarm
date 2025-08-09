@@ -1,0 +1,67 @@
+{
+  "project_id": "__PROJECT_ID__",
+  "section_id": "__SECTION_ID__",
+  "version": "v1.0.0",
+  "status": "CREATED",
+  "sparc_context": {
+    "research_domain": "__RESEARCH_DOMAIN__",
+    "autonomous_development_target": true,
+    "confidence_threshold": 0.95,
+    "target_memory_bank_files": [
+      "productContext.md",
+      "systemPatterns.md",
+      "decisionLog.md",
+      "businessIntelligence.md",
+      "technicalArchitecture.md",
+      "securityFramework.md",
+      "operationalProcedures.md",
+      "qualityAssurance.md"
+    ],
+    "target_documentation": [
+      "specification.md",
+      "architecture.md",
+      "security/",
+      "operations/",
+      "testing/",
+      "troubleshooting/"
+    ],
+    "sparc_phase_relevance": [
+      "specification",
+      "architecture",
+      "refinement",
+      "completion"
+    ]
+  },
+  "actors": {
+    "orchestrator": "sparc-autonomous-orchestrator",
+    "researcher": "__RESEARCHER_MODE__",
+    "fact_checker": "sparc-autonomous-validator",
+    "red_team": "sparc-autonomous-adversary",
+    "synthesizer": "sparc-autonomous-synthesizer",
+    "planner": "probabilistic-planner"
+  },
+  "artifacts": {
+    "claims_json": "",
+    "verification_json": "",
+    "adversarial_json": "",
+    "synthesis_output": "",
+    "intelligence_artifacts": []
+  },
+  "metrics": {
+    "verification_confidence": 0.0,
+    "sparc_relevance_score": 0.0,
+    "autonomous_development_readiness": 0.0,
+    "coverage": 0.0,
+    "contradiction_score": 0.0,
+    "implementation_guidance_completeness": 0.0
+  },
+  "flags": {
+    "fos": false,
+    "rework": false,
+    "autonomous_development_ready": false,
+    "synthesis_approved": false,
+    "high_confidence_research": false,
+    "comprehensive_coverage": false
+  },
+  "next_mode": "__RESEARCHER_MODE__"
+}
