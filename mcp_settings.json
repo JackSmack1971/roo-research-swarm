@@ -1,0 +1,80 @@
+{
+  "mcpServers": {
+    "Context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "alwaysAllow": [
+        "get-library-docs",
+        "resolve-library-id"
+      ]
+    },
+    "desktop-commander": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@wonderwhy-er/desktop-commander"
+      ],
+      "alwaysAllow": [
+        "set_config_value",
+        "get_config",
+        "read_file",
+        "read_multiple_files",
+        "write_file",
+        "list_directory",
+        "move_file",
+        "search_code",
+        "get_file_info",
+        "edit_block",
+        "execute_command",
+        "",
+        "create_directory"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking@0.6.2"
+      ],
+      "alwaysAllow": [
+        "sequentialthinking"
+      ]
+    },
+    "exa": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.exa.ai/mcp?exaApiKey="
+      ],
+      "alwaysAllow": [
+        "crawling_exa",
+        "web_search_exa"
+      ]
+    },
+    "perplexity-ask": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "server-perplexity-ask"
+      ],
+      "env": {
+        "PERPLEXITY_API_KEY": "pplx-"
+      },
+      "alwaysAllow": [
+        "perplexity_ask",
+        "perplexity_ask_tool"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ]
+    }
+  }
+}
